@@ -39,3 +39,7 @@ python app.py
 ```
 
 ---
+
+## disclaimer
+
+MegaSource does not run scrapers internally; each user can set up their own scrapers to run with the addon. Therefore, we are not responsible for any misuse of the tool.
