@@ -1,0 +1,7 @@
+Flask[async]>=3.0
+asgiref>=3.8
+aiohttp>=3.9
+waitress>=3.0
+requests
+beautifulsoup4
+lxml

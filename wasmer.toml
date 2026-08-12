@@ -1,0 +1,7 @@
+[package]
+name = "joelsinhox/megasource"
+version = "0.0.1"
+description = "megasource"
+
+[app]
+exec = { image = "." }
