@@ -1,10 +1,11 @@
 <div align="center">
 
-# 🚀 MegaSource Stremio
+# 🚀 Stremio Scrapers
 
   <p>Addon de alta performance para o Stremio com gerenciamento dinâmico de scrapers e interface de configuração moderna.</p>
 
   <p>
+    <a href="#-sobre-o-projeto">Sobre</a> •
     <a href="#-funcionalidades">Funcionalidades</a> •
     <a href="#-como-executar">Como Executar</a> •
     <a href="#-implantação-no-render">Render</a> •
@@ -23,7 +24,11 @@
 
 ## 🧐 Sobre o Projeto
 
-O **MegaSource Stremio** é uma solução para agregação e personalização de fontes de mídia para o Stremio. Ele combina um backend robusto em Python para processamento de scrapers/streams e uma interface web moderna construída em React (Vite) para configuração rápida pelo usuário.
+O **Stremio Scrapers** é uma solução para agregação e personalização de fontes de mídia para o Stremio. Ele combina um backend robusto em Python para processamento de scrapers/streams e uma interface web moderna construída em React (Vite) para configuração rápida pelo usuário.
+
+> ℹ️ Este projeto é baseado e derivado do projeto [megasource_stremio](https://github.com/zoreu/megasource_stremio) desenvolvido por **[zoreu](https://github.com/zoreu)**.
+
+---
 
 ## ✨ Funcionalidades
 
@@ -52,5 +57,5 @@ O **MegaSource Stremio** é uma solução para agregação e personalização de
 
 ### 1. Clonar o Repositório
 ```bash
-git clone [https://github.com/seu-usuario/megasource_stremio.git](https://github.com/seu-usuario/megasource_stremio.git)
-cd megasource_stremio
+git clone [https://github.com/seu-usuario/stremio-scrapers.git](https://github.com/seu-usuario/stremio-scrapers.git)
+cd stremio-scrapers
