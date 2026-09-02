@@ -1,7 +1,7 @@
 [package]
-name = "joelsinhox/megasource"
+name = "mykaelandradee/stremioscrapers"
 version = "0.0.1"
-description = "megasource"
+description = "stremioscrapers"
 
 [app]
 exec = { image = "." }
