@@ -32,7 +32,7 @@ from flask import Flask, jsonify, redirect, request, send_from_directory
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
 log = logging.getLogger("megasource")
 
-PORT = 7000
+PORT = 8080
 
 
 BASE_DIR = Path(__file__).resolve().parent
