@@ -115,7 +115,7 @@ def decode_config(value):
 
 
 DEMO_SCRAPER_URL = (
-    "https://github.com/zoreu/megasource_scrapers/raw/refs/heads/main/default_scraper.py"
+    "https://raw.githubusercontent.com/mykaelandradee/my_megasource_scrapers/refs/heads/main/default.py"
 )
 
 LOGO_URL = "https://raw.githubusercontent.com/zoreu/megasource_stremio/refs/heads/main/icon.png"
