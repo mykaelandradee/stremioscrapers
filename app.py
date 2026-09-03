@@ -44,9 +44,9 @@ app.config["JSON_AS_ASCII"] = False
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-ADDON_ID = "org.megasource"
+ADDON_ID = "org.stremioscrapers"
 VERSION = "1.0.0"
-ADDON_NAME = "MegaSource"
+ADDON_NAME = "Stremio Scrapers"
 
 SCRIPT_TTL = 10 * 60          # cache scripts for 10 minutes
 FETCH_TIMEOUT = 12            # seconds per HTTP fetch
