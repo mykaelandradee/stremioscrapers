@@ -1,8 +1,9 @@
 <div align="center">
 
-  <img src="https://raw.githubusercontent.com/zoreu/megasource_stremio/refs/heads/main/icon.png" alt="MegaSource Logo" width="160" />
+  <img src="[https://raw.githubusercontent.com/zoreu/megasource_stremio/refs/heads/main/icon.png](https://raw.githubusercontent.com/mykaelandradee/stremioscrapers/refs/heads/main/icon.png)" alt="Stremio Scrapers
+ Logo" width="160" />
 
-  # 🚀 Stremio Scrapers
+  # Stremio Scrapers
 
   <p align="center">
     <b>Motor de extração e scrapers dinâmicos em Python para o addon MegaSource (Stremio / Nuvio).</b>
