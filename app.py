@@ -118,7 +118,7 @@ DEMO_SCRAPER_URL = (
     "https://raw.githubusercontent.com/mykaelandradee/my_megasource_scrapers/refs/heads/main/default.py"
 )
 
-LOGO_URL = "https://raw.githubusercontent.com/zoreu/megasource_stremio/refs/heads/main/icon.png"
+LOGO_URL = "https://raw.githubusercontent.com/mykaelandradee/stremioscrapers/refs/heads/main/icon.png"
 
 
 def resolve_relative(base_url, url):
