@@ -1,5 +1,5 @@
 """
-MegaSource — Stremio addon backend (async Flask).
+StremioScrapers — Stremio addon backend (async Flask).
 
 The addon lets users configure Python scraper scripts (hosted on GitHub).
 When Stremio requests streams, the backend fetches each script and runs it in
@@ -30,7 +30,7 @@ import aiohttp
 from flask import Flask, jsonify, redirect, request, send_from_directory
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
-log = logging.getLogger("megasource")
+log = logging.getLogger("stremioscrapers")
 
 PORT = 7000
 
@@ -53,7 +53,7 @@ FETCH_TIMEOUT = 12            # seconds per HTTP fetch
 EXEC_TIMEOUT = 20             # seconds per scraper execution
 
 DESCRIPTION = (
-    "MegaSource — pluggable Python scrapers for movies and series. "
+    "StremioScrapers — pluggable Python scrapers for movies and series. "
     "Configure your own scraper scripts (GitHub) and stream content."
 )
 
@@ -187,7 +187,7 @@ def get_scrapers():
 # ---------------------------------------------------------------------------
 async def _http_get(url):
     headers = {
-        "User-Agent": f"MegaSource/{VERSION}",
+        "User-Agent": f"StremioScrapers/{VERSION}",
         "Accept": "text/plain, application/octet-stream",
     }
     async with aiohttp.ClientSession(headers=headers) as session:
@@ -258,7 +258,7 @@ _ORIG_IMPORT = __import__
 
 def _safe_import(name, globals=None, locals=None, fromlist=(), level=0):
     if name.split(".")[0] in FORBIDDEN_MODULES:
-        raise ImportError(f"Import of '{name}' is blocked in MegaSource scrapers")
+        raise ImportError(f"Import of '{name}' is blocked in StremioScrapers scrapers")
     return _ORIG_IMPORT(name, globals, locals, fromlist, level)
 
 
@@ -274,7 +274,7 @@ def exec_script_inline(script_content, scraper, media_type, media_id):
     for name in ("open", "breakpoint", "input", "exec", "eval", "compile"):
         builtins_dict.pop(name, None)
 
-    namespace = {"__name__": "megasource_scraper", "__builtins__": builtins_dict}
+    namespace = {"__name__": "my_megasource_scrapers", "__builtins__": builtins_dict}
     try:
         code = compile(script_content, scraper.get("url", "scraper.py"), "exec")
     except SyntaxError as exc:
@@ -323,7 +323,7 @@ def run_script_subprocess(script_content, scraper, media_type, media_id):
     If the platform cannot spawn subprocesses (e.g. Wasmer WASI), it falls
     back to the restricted in-process executor.
     """
-    tmp = tempfile.mkdtemp(prefix="megasource_")
+    tmp = tempfile.mkdtemp(prefix="stremioscrapers_")
     try:
         script_path = os.path.join(tmp, "scraper.py")
         output_path = os.path.join(tmp, "result.json")
@@ -565,7 +565,7 @@ def static_files(path):
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", PORT))
-    log.info("MegaSource addon listening on http://localhost:%s", port)
+    log.info("StremioScrapers addon listening on http://localhost:%s", port)
     from waitress import serve
 
     serve(app, host="0.0.0.0", port=port, threads=12)
