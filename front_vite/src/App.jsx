@@ -10,7 +10,7 @@ const DEMO_SCRAPER_URL =
 
 const DEMO = {
   id: "default",
-  name: "MegaSource default",
+  name: "Stremio Scrapers default",
   url: DEMO_SCRAPER_URL,
   description: "Default scraper hosted on GitHub.",
 };
@@ -116,9 +116,9 @@ export default function App() {
     <div className="page">
       <header className="header">
         <div className="brand">
-          <div className="logo">MS</div>
+          <div className="logo">SS</div>
           <div>
-            <h1>MegaSource</h1>
+            <h1>Stremio Scrapers</h1>
             <p className="muted">{t("tagline")}</p>
           </div>
         </div>
