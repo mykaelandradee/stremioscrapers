@@ -9,28 +9,6 @@
       content="Stremio Scrapers — Stremio addon with pluggable Python scrapers"
     />
     <title>Stremio Scrapers — Stremio Addon</title>
-    <script>
-      // Keep the currently bundled frontend branded as Stremio Scrapers.
-      const applyBranding = () => {
-        document.title = "Stremio Scrapers — Stremio Addon";
-        document.querySelectorAll("h1").forEach((el) => {
-          if (el.textContent.trim() === "MegaSource") el.textContent = "Stremio Scrapers";
-        });
-        document.querySelectorAll(".logo").forEach((el) => {
-          if (el.textContent.trim() === "MS") el.textContent = "SS";
-        });
-        document.querySelectorAll("body *").forEach((el) => {
-          if (el.children.length === 0 && el.textContent.includes("MegaSource default")) {
-            el.textContent = el.textContent.replaceAll("MegaSource default", "Stremio Scrapers default");
-          }
-        });
-      };
-      new MutationObserver(applyBranding).observe(document.documentElement, {
-        childList: true,
-        subtree: true,
-      });
-      applyBranding();
-    </script>
     <script type="module" crossorigin src="/assets/index-B0X9cvzO.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-BoVeupST.css">
   </head>
