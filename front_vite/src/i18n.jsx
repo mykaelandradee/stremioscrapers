@@ -24,7 +24,7 @@ export const messages = {
     githubHint:
       "Upload scraper_demo/scraper.py to a GitHub repository and paste its raw URL. You can add as many scrapers as you want.",
     demoTip:
-      "The default scraper uses the fixed GitHub URL https://github.com/zoreu/megasource_scrapers/raw/refs/heads/main/default_scraper.py",
+      "The default scraper uses a fixed GitHub URL for the default scraper.",
     demo: "Default",
     manifestUrl: "Manifest URL",
     manifestHint:
@@ -57,7 +57,7 @@ export const messages = {
     githubHint:
       "Envie scraper_demo/scraper.py para um repositório no GitHub e cole a URL raw aqui. Você pode adicionar quantos scrapers quiser.",
     demoTip:
-      "O scraper default usa a URL fixa do GitHub https://github.com/zoreu/megasource_scrapers/raw/refs/heads/main/default_scraper.py",
+      "O scraper padrão usa uma URL fixa do GitHub para o scraper padrão.",
     demo: "Default",
     manifestUrl: "URL do manifest",
     manifestHint:
@@ -78,14 +78,14 @@ const I18nContext = createContext(null);
 
 export function I18nProvider({ children }) {
   const [locale, setLocale] = useState(() => {
-    const saved = localStorage.getItem("megasource-locale");
+    const saved = localStorage.getItem("stremioscrapers-locale");
     if (saved && messages[saved]) return saved;
     const nav = (navigator.language || "en").toLowerCase();
     return nav.startsWith("pt") ? "pt-BR" : "en";
   });
 
   useEffect(() => {
-    localStorage.setItem("megasource-locale", locale);
+    localStorage.setItem("stremioscrapers-locale", locale);
     document.documentElement.lang = locale === "pt-BR" ? "pt-BR" : "en";
   }, [locale]);
 
