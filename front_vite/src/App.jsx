@@ -38,10 +38,32 @@ function decodeConfig(value) {
   }
 }
 
+function getConfigFromLocation() {
+  const params = new URLSearchParams(window.location.search);
+  const directConfig = params.get("config");
+  if (directConfig) return directConfig;
+
+  // The backend currently redirects /<config>/configure to /.
+  // Recover the original config from the same-origin referrer so an existing
+  // installed manifest can still reopen with its saved scrapers.
+  try {
+    const referrer = document.referrer;
+    if (!referrer) return null;
+
+    const referrerUrl = new URL(referrer, window.location.origin);
+    if (referrerUrl.origin !== window.location.origin) return null;
+
+    const match = referrerUrl.pathname.match(/^\/([^/]+)\/configure\/?$/);
+    return match ? decodeURIComponent(match[1]) : null;
+  } catch {
+    return null;
+  }
+}
+
 export default function App() {
   const { t } = useI18n();
   const [scrapers, setScrapers] = useState(() => {
-    const config = new URLSearchParams(window.location.search).get("config");
+    const config = getConfigFromLocation();
     return decodeConfig(config) || [DEMO];
   });
   const [baseUrl, setBaseUrl] = useState(window.location.origin);
