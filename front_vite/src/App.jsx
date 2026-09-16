@@ -6,7 +6,7 @@ import ScraperCard from "./components/ScraperCard";
 import ManifestCard from "./components/ManifestCard";
 
 const DEMO_SCRAPER_URL =
-  "https://github.com/zoreu/megasource_scrapers/raw/refs/heads/main/default_scraper.py";
+  "https://raw.githubusercontent.com/mykaelandradee/my_megasource_scrapers/refs/heads/main/default.py";
 
 const DEMO = {
   id: "default",
@@ -22,9 +22,28 @@ function encodeConfig(scrapers) {
     .replace(/=+$/, "");
 }
 
+function decodeConfig(value) {
+  if (!value) return null;
+
+  try {
+    const padding = "=".repeat((4 - (value.length % 4)) % 4);
+    const normalized = value.replace(/-/g, "+").replace(/_/g, "/") + padding;
+    const json = decodeURIComponent(escape(atob(normalized)));
+    const data = JSON.parse(json);
+    const scrapers = Array.isArray(data) ? data : data?.scrapers;
+
+    return Array.isArray(scrapers) && scrapers.length ? scrapers : null;
+  } catch {
+    return null;
+  }
+}
+
 export default function App() {
   const { t } = useI18n();
-  const [scrapers, setScrapers] = useState([DEMO]);
+  const [scrapers, setScrapers] = useState(() => {
+    const config = new URLSearchParams(window.location.search).get("config");
+    return decodeConfig(config) || [DEMO];
+  });
   const [baseUrl, setBaseUrl] = useState(window.location.origin);
   const [online, setOnline] = useState(false);
   const [tests, setTests] = useState({});
