@@ -24,14 +24,18 @@ function encodeConfig(scrapers) {
 
 function decodeConfig(value) {
   if (!value) return null;
-
   try {
     const padding = "=".repeat((4 - (value.length % 4)) % 4);
     const normalized = value.replace(/-/g, "+").replace(/_/g, "/") + padding;
     const json = decodeURIComponent(escape(atob(normalized)));
     const data = JSON.parse(json);
-    const scrapers = Array.isArray(data) ? data : data?.scrapers;
-
+    const scrapers = Array.isArray(data)
+      ? data
+      : data && Array.isArray(data.scrapers)
+        ? data.scrapers
+        : data && Array.isArray(data.config)
+          ? data.config
+          : null;
     return Array.isArray(scrapers) && scrapers.length ? scrapers : null;
   } catch {
     return null;
@@ -40,24 +44,13 @@ function decodeConfig(value) {
 
 function getConfigFromLocation() {
   const params = new URLSearchParams(window.location.search);
-  const directConfig = params.get("config");
-  if (directConfig) return directConfig;
+  const direct = params.get("config");
+  if (direct) return direct;
 
-  // The backend currently redirects /<config>/configure to /.
-  // Recover the original config from the same-origin referrer so an existing
-  // installed manifest can still reopen with its saved scrapers.
-  try {
-    const referrer = document.referrer;
-    if (!referrer) return null;
+  const pathMatch = window.location.pathname.match(/^\/([^/]+)\/?$/);
+  if (pathMatch && pathMatch[1] !== "configure") return pathMatch[1];
 
-    const referrerUrl = new URL(referrer, window.location.origin);
-    if (referrerUrl.origin !== window.location.origin) return null;
-
-    const match = referrerUrl.pathname.match(/^\/([^/]+)\/configure\/?$/);
-    return match ? decodeURIComponent(match[1]) : null;
-  } catch {
-    return null;
-  }
+  return null;
 }
 
 export default function App() {
